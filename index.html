@@ -1,114 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio Under Construction</title>
-  <style>
-    body {
-      background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
-      color: #222;
-      font-family: 'Segoe UI', Verdana, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-    }
-    .visual {
-      position: relative;
-      margin-bottom: 2rem;
-      width: 220px;
-      height: 160px;
-    }
-    .cone {
-      position: absolute;
-      bottom: 0;
-      width: 50px;
-      height: 75px;
-      background: repeating-linear-gradient(
-        45deg,
-        #ffa500 0 15px,
-        #fff 15px 30px
-      );
-      border-radius: 0 0 20px 20px;
-      left: 0;
-      animation: bounce 2s infinite;
-    }
-    .cone.right {
-      left: 170px;
-      animation-delay: 0.6s;
-    }
-    .cone:before {
-      content: '';
-      display: block;
-      position: absolute;
-      top: -15px;
-      left: 10px;
-      width: 30px;
-      height: 15px;
-      background: #ffa500;
-      border-radius: 10px 10px 0 0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-18px); }
-    }
-    .wrench {
-      position: absolute;
-      left: 60px;
-      top: 50px;
-      width: 100px;
-      height: 40px;
-      transform: rotate(-20deg);
-      animation: spin 2.5s infinite linear;
-    }
-    @keyframes spin {
-      0% { transform: rotate(-20deg);}
-      100% { transform: rotate(340deg);}
-    }
-    /* SVG styling */
-    .message {
-      background: rgba(255,255,255,0.94);
-      padding: 1.5rem 2rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-      text-align: center;
-      font-size: 1.25rem;
-      max-width: 400px;
-      margin: auto;
-    }
-    .message h1 {
-      font-size: 2rem;
-      margin: 0 0 0.5rem 0;
-      color: #f8b500;
-      letter-spacing: 1px;
-    }
-    .message p {
-      margin: 0;
-      color: #555;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.2rem;
+            max-width: 500px;
+        }
+    </style>
 </head>
 <body>
-  <div class="visual">
-    <div class="cone"></div>
-    <div class="cone right"></div>
-    <svg class="wrench" viewBox="0 0 100 40">
-      <rect x="40" y="14" width="30" height="12" rx="6" fill="#888"/>
-      <circle cx="30" cy="20" r="11" fill="#bbb" stroke="#888" stroke-width="3"/>
-      <rect x="10" y="17" width="20" height="6" rx="3" fill="#bbb"/>
-      <rect x="70" y="17" width="20" height="6" rx="3" fill="#bbb"/>
-    </svg>
-  </div>
-  <div class="message">
-    <h1>Coming Soon</h1>
-    <p>
-      My portfolio is currently under construction.<br>
-      Please check back soon for updates and cool projects!
-    </p>
-  </div>
+    <h1>My Portfolio is Coming Soon</h1>
+    <p>I'm currently working on building something amazing. Please check back later to explore my work.</p>
 </body>
 </html>
