@@ -30,21 +30,31 @@
     
     /* Mobile menu styles */
     .mobile-menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:.5rem;color:var(--ink);font-size:18px}
-    .mobile-nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:1rem 0}
-    .mobile-nav a{display:block;padding:.75rem 1.5rem;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--border)}
+    .mobile-nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:.5rem 0;box-shadow:0 12px 30px rgba(2,6,23,.08)}
+    .mobile-nav a{display:flex;align-items:center;gap:14px;padding:1.2rem 1.25rem;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--border);font-weight:600;letter-spacing:.2px}
     .mobile-nav a:last-child{border-bottom:none}
-    .mobile-nav a:hover{background:#f1f5f9}
+    .mobile-nav a:hover{background:#eef2ff}
+    .mobile-nav a::before{content:"";width:6px;height:6px;border-radius:999px;background:transparent;transition:background-color .2s}
+    .mobile-nav a:hover::before{background:var(--accent)}
     
     @media (max-width:768px){
-      .mobile-menu-toggle{display:block}
+      .mobile-menu-toggle{display:block;font-size:22px;padding:.6rem}
       .nav nav{display:none}
-      .mobile-nav{display:block}
+      /* Keep mobile menu hidden by default; JS toggles it */
+      .mobile-nav{display:none}
+      .nav-inner{height:64px}
+      .mobile-nav a{font-size:16px;border-bottom-color:#e5e7eb}
+      .mobile-nav a + a{margin-top:6px}
     }
 
     .hero{position:relative;overflow:hidden}
+    /* Desktop vertical padding for banner */
+    @media (min-width:1024px){
+      .hero{padding:48px 0}
+    }
     /* Add comfortable side + vertical spacing on small screens */
     @media (max-width:480px){
-      .hero{padding:24px 0}
+      .hero{padding:32px 0}
     }
     .blob{position:absolute;filter:blur(64px);opacity:.35;border-radius:999px}
     .b1{right:-120px;top:-120px;width:300px;height:300px;background:linear-gradient(135deg,#67e8f9,#3b82f6)}
@@ -53,8 +63,16 @@
     @media (max-width:900px){.hero-inner{grid-template-columns:1fr;padding:60px 0;gap:24px}}
     /* Extra vertical padding on mobile; add tablet/desktop side padding */
     @media (max-width:768px){.hero .container{padding:0 32px}}
-    @media (min-width:769px){.hero .container{padding:40px 32px}}
+    @media (min-width:769px){.hero .container{padding:64px 36px}}
     @media (max-width:480px){.hero-inner{padding:80px 0}}
+    /* Mobile hero spacing tweaks */
+    @media (max-width:480px){
+      .hero-inner{row-gap:18px}
+      .subtitle{margin:0 0 12px}
+      .tagline{margin:0 0 18px}
+      .contact-row{margin:24px 0}
+      .hero-meta{margin-top:12px}
+    }
     h1{font-size:44px;line-height:1.1;margin:0 0 6px}
     @media (max-width:768px){h1{font-size:32px}}
     @media (max-width:480px){h1{font-size:28px}}
@@ -132,6 +150,10 @@
     @media (max-width:480px){
       input, textarea{font-size:16px;padding:12px}
       .btn{padding:.8rem 1.2rem;font-size:15px}
+      /* Make brand and menu comfortably large on small phones */
+      .nav a[href^="https://www.bachirmasroua.com"], .nav a.brand{
+        font-size:20px
+      }
     }
     
     /* Mobile logo improvements */
@@ -143,7 +165,7 @@
 <body>
   <header class="nav">
     <div class="container nav-inner">
-      <a href="https://www.bachirmasroua.com" target="_blank" style="font-weight:700;color:var(--ink);text-decoration:none;padding:.4rem .7rem;border-radius:12px;transition:background-color 0.2s" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='transparent'">BM.</a>
+      <a href="https://www.bachirmasroua.com" class="brand" style="font-weight:700;color:var(--ink);text-decoration:none;padding:.4rem .7rem;border-radius:12px;transition:background-color 0.2s" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='transparent'">BM.</a>
       <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
       <nav>
         <a href="#home">Accueil</a>
