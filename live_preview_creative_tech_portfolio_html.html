@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bachir Masroua — Portfolio</title>
+  <style>
+    :root{--bg1:#f0f7ff;--bg2:#ffffff;--ink:#0f172a;--muted:#475569;--pill:#eef2ff;--accent:#2563eb;--accent2:#06b6d4;--card:#ffffff;--border:#e2e8f0;--shadow:0 10px 30px rgba(2,6,23,.08)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--ink);background:linear-gradient(180deg,var(--bg1),var(--bg2))}
+    /* Ensure all form controls inherit the site font */
+    input, textarea, select, button{font-family:inherit}
+    .container{max-width:1120px;margin:0 auto;padding:0 20px}
+    @media (max-width:480px){.container{padding:0 24px}}
+    
+    /* Tablet spacing improvements */
+    @media (max-width:768px) and (min-width:481px){
+      .container{padding:0 32px}
+    }
+    
+    /* Extra mobile spacing for hero section - must be after general container rules */
+    @media (max-width:480px){
+      .hero .container{padding:0 32px !important}
+    }
+    .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);background:rgba(255,255,255,.6);border-bottom:1px solid var(--border)}
+    .nav-inner{height:56px;display:flex;align-items:center;justify-content:space-between}
+    .nav a{color:var(--ink);text-decoration:none;padding:.4rem .7rem;border-radius:12px}
+    .nav a:hover{background:#f1f5f9}
+    
+    /* Mobile menu styles */
+    .mobile-menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:.5rem;color:var(--ink);font-size:18px}
+    .mobile-nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:1rem 0}
+    .mobile-nav a{display:block;padding:.75rem 1.5rem;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--border)}
+    .mobile-nav a:last-child{border-bottom:none}
+    .mobile-nav a:hover{background:#f1f5f9}
+    
+    @media (max-width:768px){
+      .mobile-menu-toggle{display:block}
+      .nav nav{display:none}
+      .mobile-nav{display:block}
+    }
+
+    .hero{position:relative;overflow:hidden}
+    /* Add comfortable side + vertical spacing on small screens */
+    @media (max-width:480px){
+      .hero{padding:24px 0}
+    }
+    .blob{position:absolute;filter:blur(64px);opacity:.35;border-radius:999px}
+    .b1{right:-120px;top:-120px;width:300px;height:300px;background:linear-gradient(135deg,#67e8f9,#3b82f6)}
+    .b2{left:-120px;bottom:-160px;width:360px;height:360px;background:linear-gradient(135deg,#c7d2fe,#5eead4)}
+    .hero-inner{padding:80px 0;display:grid;grid-template-columns:1.2fr .8fr;gap:32px}
+    @media (max-width:900px){.hero-inner{grid-template-columns:1fr;padding:60px 0;gap:24px}}
+    /* Extra vertical padding on mobile; add tablet/desktop side padding */
+    @media (max-width:768px){.hero .container{padding:0 32px}}
+    @media (min-width:769px){.hero .container{padding:40px 32px}}
+    @media (max-width:480px){.hero-inner{padding:80px 0}}
+    h1{font-size:44px;line-height:1.1;margin:0 0 6px}
+    @media (max-width:768px){h1{font-size:32px}}
+    @media (max-width:480px){h1{font-size:28px}}
+    .subtitle{color:var(--muted);margin:0 0 6px}
+    .tagline{color:var(--muted);font-size:15px;margin:0 0 18px}
+
+    .btn{display:inline-flex;align-items:center;gap:.55rem;background:var(--accent);color:#fff;padding:.65rem 1rem;border:none;border-radius:14px;box-shadow:var(--shadow);cursor:pointer;text-decoration:none}
+    .btn.secondary{background:#eef2ff;color:#1e293b}
+    .btn .icon{width:18px;height:18px}
+
+    .contact-row{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+    @media (max-width:480px){.contact-row{gap:8px;margin:16px 0}}
+    .chip{display:inline-flex;align-items:center;gap:.45rem;background:#ffffff;border:1px solid var(--border);padding:.5rem .75rem;border-radius:999px;font-size:14px;color:var(--muted);box-shadow:var(--shadow)}
+    @media (max-width:480px){.chip{padding:.4rem .6rem;font-size:13px}}
+    .chip a{color:inherit;text-decoration:none}
+
+    .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:768px){.cards{grid-template-columns:1fr;gap:10px}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow)}
+    @media (max-width:480px){.card{border-radius:16px}}
+    .card h3{margin:16px 16px 8px;font-size:14px;color:var(--muted);font-weight:600}
+    @media (max-width:480px){.card h3{margin:12px 12px 6px;font-size:13px}}
+    .card .pills{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 16px}
+    @media (max-width:480px){.card .pills{padding:0 12px 12px;gap:6px}}
+    .pill{background:var(--pill);padding:.35rem .6rem;border-radius:999px;font-size:12px}
+    @media (max-width:480px){.pill{padding:.3rem .5rem;font-size:11px}}
+
+    section{padding:56px 0}
+    @media (max-width:768px){section{padding:40px 0}}
+    @media (max-width:480px){section{padding:32px 0}}
+    .section-title{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+    @media (max-width:480px){.section-title{flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:16px}}
+    .section-title h2{margin:0;font-size:22px}
+    @media (max-width:768px){.section-title h2{font-size:20px}}
+    @media (max-width:480px){.section-title h2{font-size:18px}}
+    .section-title span{color:var(--muted);font-size:14px}
+    @media (max-width:480px){.section-title span{font-size:13px}}
+    .grid{display:grid;gap:16px}
+    @media (max-width:480px){.grid{gap:12px}}
+    .grid.two{grid-template-columns:1fr 1fr}
+    @media (max-width:900px){.grid.two{grid-template-columns:1fr}}
+
+    .project{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;box-shadow:var(--shadow)}
+    @media (max-width:480px){.project{padding:16px;border-radius:16px}}
+    .project h3{margin:0 0 6px}
+    @media (max-width:480px){.project h3{font-size:16px;line-height:1.3}}
+    .muted{color:var(--muted)}
+    ul{margin:10px 0 0 18px;color:var(--muted)}
+    @media (max-width:480px){ul{margin:8px 0 0 16px;font-size:14px}}
+    .badge{display:inline-block;background:#ecfeff;border:1px solid #cffafe;color:#0369a1;padding:.15rem .5rem;border-radius:999px;font-size:12px;margin-left:6px}
+    @media (max-width:480px){.badge{font-size:11px;padding:.1rem .4rem;margin-left:4px}}
+
+    .edu-item{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;box-shadow:var(--shadow);margin-bottom:18px}
+    @media (max-width:768px){.edu-item{flex-direction:column;gap:12px}}
+    @media (max-width:480px){.edu-item{padding:14px;border-radius:16px;margin-bottom:16px}}
+    .edu-item:last-child{margin-bottom:0}
+    .edu-title{margin:0 0 6px;font-weight:600}
+    @media (max-width:480px){.edu-title{font-size:15px;line-height:1.3}}
+    .edu-date{white-space:nowrap;color:var(--muted)}
+    @media (max-width:768px){.edu-date{white-space:normal;text-align:right}}
+    @media (max-width:480px){.edu-date{font-size:13px}}
+
+    footer{border-top:1px solid var(--border);padding:32px 0;color:var(--muted)}
+    @media (max-width:768px){footer{padding:24px 0}}
+    @media (max-width:480px){footer{padding:20px 0}}
+    .logo{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;color:#fff;font-weight:700;font-size:12px;margin-right:8px;box-shadow:var(--shadow)}
+    
+    /* Mobile navigation improvements */
+    @media (max-width:768px){
+      .nav-inner{height:48px}
+      .nav a{padding:.3rem .6rem;font-size:14px}
+    }
+    
+    /* Mobile form improvements */
+    @media (max-width:480px){
+      input, textarea{font-size:16px;padding:12px}
+      .btn{padding:.8rem 1.2rem;font-size:15px}
+    }
+    
+    /* Mobile logo improvements */
+    @media (max-width:480px){
+      .project h3 img, .edu-title img{width:48px;height:48px;margin-right:10px}
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="https://www.bachirmasroua.com" target="_blank" style="font-weight:700;color:var(--ink);text-decoration:none;padding:.4rem .7rem;border-radius:12px;transition:background-color 0.2s" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='transparent'">BM.</a>
+      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+      <nav>
+        <a href="#home">Accueil</a>
+        <a href="#about">À propos</a>
+        <a href="#projects">Projets</a>
+        <a href="#experience">Expérience</a>
+        <a href="#education">Formation</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="#home" onclick="closeMobileMenu()">Accueil</a>
+      <a href="#about" onclick="closeMobileMenu()">À propos</a>
+      <a href="#projects" onclick="closeMobileMenu()">Projets</a>
+      <a href="#experience" onclick="closeMobileMenu()">Expérience</a>
+      <a href="#education" onclick="closeMobileMenu()">Formation</a>
+      <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+    </div>
+  </header>
+
+  <main id="home" class="hero">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="container hero-inner">
+      <div>
+        <p class="muted" style="text-transform:uppercase;letter-spacing:.2em;font-size:12px;margin:0 0 6px">Disponible pour un stage (avril 2026)</p>
+        <h1>Bachir Masroua</h1>
+        <p class="subtitle">Élève ingénieur généraliste en systèmes d'information — École Centrale</p>
+        <p class="tagline"></p>
+
+        <div class="contact-row">
+          <a class="btn" href="CV_BachirMasroua_fr.pdf" target="_blank" aria-label="Télécharger le CV">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Télécharger le CV
+          </a>
+        </div>
+
+        <div class="hero-meta" style="gap:10px">
+          <span class="chip"><span>✉️</span><a href="mailto:bachir.masroua@eleves.ec-nantes.fr">bachir.masroua.pro@gmail.com</a></span>
+          <span class="chip"><span>📞</span>07 62 86 47 40</span>
+        </div>
+      </div>
+      <div>
+        <div class="cards" style="background:linear-gradient(180deg,#f8fbff,#ffffff);padding:10px;border-radius:22px;border:1px solid var(--border)">
+          <div class="card"><h3>Langages</h3><div class="pills"><span class="pill">Java</span><span class="pill">C++</span><span class="pill">JavaScript</span><span class="pill">Python</span><span class="pill">SQL</span></div></div>
+          <div class="card"><h3>Frameworks</h3><div class="pills"><span class="pill">ReactJS</span><span class="pill">Tailwind CSS</span></div></div>
+          <div class="card"><h3>Bases de données</h3><div class="pills"><span class="pill">PostgreSQL</span><span class="pill">SQL</span></div></div>
+          <div class="card"><h3>Outils</h3><div class="pills"><span class="pill">Git</span><span class="pill">Excel</span><span class="pill">Google Workspace</span><span class="pill">Teams</span><span class="pill">Slack</span></div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-title"><h2>À propos</h2><span>Profil & objectif</span></div>
+      <p class="muted" style="font-size:16px;line-height:1.7">
+        Élève ingénieur en dernière année à l’École Centrale, spécialisé en systèmes d’information et transformation numérique. Je recherche un stage de fin d’études de 6 mois à partir d’avril 2026.
+      </p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <div class="section-title"><h2>Projets</h2><span>Impact et résultats</span></div>
+      <div class="grid two">
+        <div class="project">
+          <h3>VéloCampus — outil d’aide à la décision <span class="badge">Projet académique</span></h3>
+          <p class="muted">Évalue les dons de vélos pour décider réparation vs. démontage.</p>
+          <ul>
+            <li>Travail d’équipe (5 étudiants) & organisation projet</li>
+            <li>Front en React, typage et composants réutilisables</li>
+          </ul>
+          <p class="muted"><strong>Tech :</strong> React — <a href="https://velocampus.vercel.app" target="_blank">Lien</a></p>
+        </div>
+        <div class="project">
+          <h3>Application de Check‑in Aérien <span class="badge">Perso</span></h3>
+          <p class="muted">Gestion clients/réservations avec base de données.</p>
+          <ul>
+            <li>CRUD complet, logique de réservation et validations</li>
+            <li>Interface simple pour l’agent de comptoir</li>
+          </ul>
+          <p class="muted"><strong>Tech :</strong> Java, SQL — <a href="https://github.com/BachirMasroua/Flight_Check_in" target="_blank">GitHub</a></p>
+        </div>
+        <div class="project">
+          <h3>Système de Gestion de Magasin <span class="badge">Perso</span></h3>
+          <p class="muted">Windows Forms pour inventaire, clients et commandes.</p>
+          <ul>
+            <li>Gestion des stocks et des ventes</li>
+            <li>Rapports de base et gestion clients</li>
+          </ul>
+          <p class="muted"><strong>Tech :</strong> C#, Windows Forms, SQL — <a href="https://github.com/BachirMasroua/Store-Management-System" target="_blank">GitHub</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="container">
+      <div class="section-title"><h2>Expérience</h2><span>Rôles, responsabilités, impact</span></div>
+      <div class="grid two">
+        <div class="project">
+          <h3 style="display:flex;align-items:center"><img src="Casino.jpg" alt="Groupe Casino" style="width:64px;height:64px;margin-right:12px;box-shadow:var(--shadow);border:1px solid var(--border);border-radius:8px">Stagiaire en Optimisation des Processus — Groupe Casino</h3>
+          <p class="muted">Nantes, France • Juil – Août 2025</p>
+          <ul>
+            <li>Automatisation n8n pour l’enregistrement des produits non listés</li>
+            <li>+25% d’efficacité sur le flux de saisie</li>
+            <li>Immersion dans les opérations d’un grand distributeur</li>
+          </ul>
+        </div>
+        <div class="project">
+          <h3 style="display:flex;align-items:center"><img src="Creoshift.png" alt="Creoshift" style="width:64px;height:64px;margin-right:12px;box-shadow:var(--shadow);border:1px solid var(--border);border-radius:8px">Ingénieur Logiciel — Creoshift</h3>
+          <p class="muted">Zahlé, Liban • Juil 2023 – Mai 2024</p>
+          <ul>
+            <li>Développement d’applications Web (ReactJS/Java)</li>
+            <li>Contributions aux apps mobiles (React Native)</li>
+            <li>Sites e‑commerce Shopify pour PME (ex. Lacoste Liban)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="container">
+      <div class="section-title"><h2>Formation</h2><span>Parcours académique</span></div>
+      <div class="edu-item">
+        <div>
+          <h3 class="edu-title" style="display:flex;align-items:center"><img src="ECN.png" alt="École Centrale" style="width:64px;height:64px;margin-right:12px;box-shadow:var(--shadow);border:1px solid var(--border);border-radius:8px">Diplôme d'Ingénieur Généraliste — École Centrale</h3>
+          <p class="muted">Systèmes d’Information / Finance d’Entreprise</p>
+        </div>
+        <div class="edu-date">2024–2026</div>
+      </div>
+      <div class="edu-item">
+        <div>
+          <h3 class="edu-title" style="display:flex;align-items:center"><img src="UL.png" alt="Université Libanaise" style="width:64px;height:64px;margin-right:12px;box-shadow:var(--shadow);border:1px solid var(--border);border-radius:8px">Génie Électrique et Informatique — Université Libanaise ULFG2</h3>
+          
+        </div>
+        <div class="edu-date">2020–2026</div>
+      </div>
+      <div class="edu-item">
+        <div>
+          <h3 class="edu-title">Certifications</h3>
+          <p class="muted">Coursera : <a href="https://coursera.org/share/aac68ea99ffb5f1ad16191d826125c83" target="_blank">Applied Data Science with Python</a> (Juil 2022) • <a href="https://coursera.org/share/072c4669987085cbba17760c6d73934b" target="_blank">Google Data Analytics</a> (Mars 2022)</p>
+        </div>
+        <div class="edu-date">2022</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-title"><h2>Contact</h2><span></span></div>
+      <div class="grid two">
+        <div class="project">
+          <p class="muted">Intéressé par mon profil ? Discutons de vos besoins et des missions où je peux apporter de la valeur.</p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+              <a class="btn" href="mailto:bachir.masroua.pro@gmail.com" style="display:flex;align-items:center;gap:8px">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                Email
+              </a>
+              <a class="btn secondary" href="https://github.com/BachirMasroua" target="_blank" style="display:flex;align-items:center;gap:8px">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                GitHub
+              </a>
+              <a class="btn secondary" href="https://www.bachirmasroua.com" target="_blank" style="display:flex;align-items:center;gap:8px">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+                Site
+              </a>
+            </div>
+        </div>
+        <div class="project">
+          <form action="https://formspree.io/f/mjkaqwpa" method="POST" id="contact-form">
+            <label class="muted">Nom</label>
+            <input name="name" required style="width:100%;padding:10px;border:1px solid var(--border);border-radius:12px;margin:6px 0 12px" placeholder="Votre nom" />
+            <label class="muted">Email</label>
+            <input type="email" name="email" required style="width:100%;padding:10px;border:1px solid var(--border);border-radius:12px;margin:6px 0 12px" placeholder="vous@example.com" />
+            <label class="muted">Message</label>
+            <textarea name="message" rows="4" required style="width:100%;padding:10px;border:1px solid var(--border);border-radius:12px;margin:6px 0 14px" placeholder="Parlez-moi de votre projet..."></textarea>
+            <button class="btn" type="submit">Envoyer</button>
+          </form>
+          
+          <div id="form-status" style="margin-top:16px;padding:16px;border-radius:12px;display:none;font-size:14px;font-weight:500;box-shadow:var(--shadow);border:1px solid transparent"></div>
+          
+          <script>
+            document.getElementById('contact-form').addEventListener('submit', function(e) {
+              e.preventDefault();
+              const form = e.target;
+              const status = document.getElementById('form-status');
+              const submitBtn = form.querySelector('button[type="submit"]');
+              
+              // Show loading state
+              submitBtn.textContent = 'Envoi en cours...';
+              submitBtn.disabled = true;
+              
+              fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                  'Accept': 'application/json'
+                }
+              })
+              .then(response => {
+                if (response.ok) {
+                  status.style.display = 'block';
+                  status.style.background = 'linear-gradient(135deg, #d1fae5, #a7f3d0)';
+                  status.style.border = '1px solid #10b981';
+                  status.style.color = '#065f46';
+                  status.innerHTML = '<div style="display:flex;align-items:center;gap:8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg><span>Message envoyé avec succès ! Merci pour votre intérêt, je vous répondrai dès que possible.</span></div>';
+                  form.reset();
+                } else {
+                  throw new Error('Erreur lors de l\'envoi');
+                }
+              })
+              .catch(error => {
+                status.style.display = 'block';
+                status.style.background = 'linear-gradient(135deg, #fee2e2, #fecaca)';
+                status.style.border = '1px solid #ef4444';
+                status.style.color = '#991b1b';
+                status.innerHTML = '<div style="display:flex;align-items:center;gap:8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg><span>Erreur lors de l\'envoi. Veuillez réessayer ou m\'envoyer un email directement.</span></div>';
+              })
+              .finally(() => {
+                submitBtn.textContent = 'Envoyer';
+                submitBtn.disabled = false;
+              });
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+      <div>© <span id="yr"></span> Bachir Masroua. Tous droits réservés.</div>
+      <div class="muted" style="display:flex;gap:12px;align-items:center">
+        <a href="https://github.com/BachirMasroua" target="_blank" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:4px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          GitHub
+        </a>
+        <a href="mailto:bachir.masroua.pro@gmail.com" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:4px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+          Email
+        </a>
+        <a href="https://www.bachirmasroua.com" target="_blank" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:4px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+          Site
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('yr').textContent=new Date().getFullYear()
+    
+    // Mobile menu functionality
+    function toggleMobileMenu() {
+      const mobileNav = document.getElementById('mobile-nav');
+      mobileNav.style.display = mobileNav.style.display === 'block' ? 'none' : 'block';
+    }
+    
+    function closeMobileMenu() {
+      document.getElementById('mobile-nav').style.display = 'none';
+    }
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const mobileNav = document.getElementById('mobile-nav');
+      const toggle = document.querySelector('.mobile-menu-toggle');
+      if (!mobileNav.contains(event.target) && !toggle.contains(event.target)) {
+        mobileNav.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
